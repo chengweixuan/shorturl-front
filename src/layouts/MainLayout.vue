@@ -30,7 +30,7 @@
           header
           class="text-grey-8"
         >
-          Essential Links
+          Essential Links :)
         </q-item-label>
 
         <EssentialLink
