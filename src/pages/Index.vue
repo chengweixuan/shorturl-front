@@ -1,21 +1,58 @@
 <template>
   <q-page class="page-bg" padding>
-    <div class="column items-center q-gutter-lg">
+    <q-form class="column items-center q-gutter-lg" v-on:submit="onSubmit" v-on:reset="onReset">
       <q-input dark rounded class="input" standout="bg-red-5"
                 v-model="url"
                 label="Enter URL"
                 label-color="white"
                 color="white"/>
-    </div>
+
+      <div class="row q-pr-lg">
+          <q-btn-toggle v-model="custom" toggle-color="blue-grey-10" dark push rounded
+          text-color="white"
+          :options="[
+          {label: 'Random', value: false},
+          {label: 'Custom', value: true}
+          ]" />
+      </div>
+
+      <q-input v-if="custom" dark rounded class="input-custom" standout="bg-red-5"
+                v-model="customUrl"
+                label="Enter Custom URL"
+                label-color="white"
+                color="white"/>
+
+      <q-btn rounded push label="Generate" type="submit" color="red-7" />
+      <q-btn rounded push label="Reset" type="reset" color="blue-grey-10" text-color="white" />
+    </q-form>
   </q-page>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
 
-export default defineComponent({
-  name: 'PageIndex'
-})
+export default {
+  name: 'home',
+  data: function () {
+    return {
+      custom: false,
+      url: '',
+      customUrl: ''
+    }
+  },
+  methods: {
+    onSubmit: function (event) {
+      this.$router.push({
+        name: 'result'
+      })
+    },
+    onReset: function (event) {
+      this.url = '',
+      this.customUrl = '',
+      this.custom = false
+    }
+  }
+}
 </script>
 
 <style>
@@ -27,4 +64,14 @@ background-color: #181925;
   width: 450px;
   color: white;
 }
+
+.input-custom {
+  width: 300px;
+  color: white;
+}
+
+.btn-generate {
+    background-color: #282F44;
+    color: #white;
+  }
 </style>
