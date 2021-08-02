@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 // API endpoint(s)
-const BACKEND_URL = 'http://localhost:8080'
+const BACKEND_URL = 'https://smollink-heroku.herokuapp.com'
 
 const backendInstance = axios.create({
   baseURL: BACKEND_URL,

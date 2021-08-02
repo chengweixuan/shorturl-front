@@ -22,8 +22,22 @@
                 label-color="white"
                 color="white"/>
 
-      <q-btn rounded push label="Generate" type="submit" color="red-7" />
-      <q-btn rounded push label="Reset" type="reset" color="blue-grey-10" text-color="white" />
+      <div class="column items-center q-gutter-sm">
+        <q-btn rounded push label="Generate" type="submit" color="red-7" />
+        <q-btn rounded push label="Reset" type="reset" color="blue-grey-10" text-color="white" />
+      </div>
+
+      <br />
+
+      <div class="column items-center">
+        <div class="col text-h7" style="color: #EDF2F4;">
+          Made by Cheng Weixuan
+        </div>
+
+        <div class="col text-h7" style="color: #EDF2F4;">
+          GitHub: chengweixuan
+        </div>
+      </div>
     </q-form>
 
     <q-dialog v-model="invalid">
