@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue';
+import api from 'src/scripts/Api.js'
 
 export default {
   name: 'home',
@@ -37,14 +37,32 @@ export default {
     return {
       custom: false,
       url: '',
-      customUrl: ''
+      customUrl: '',
+      code: '',
+      newUrl: ''
     }
   },
   methods: {
     onSubmit: function (event) {
-      this.$router.push({
-        name: 'result'
+      var that = this
+      api.getEncodedUrl(
+        this.url
+      ).then(response => {
+        this.code = response.data
+        this.newUrl = 'localhost:8070/#/' + this.code
+        console.log(this.code)
+
+        this.$router.push({
+          name: 'result',
+          params: {
+            originalUrl: this.url,
+            newUrl: this.newUrl
+          }
+        })
+      }).catch(error => {
+        console.log(error)
       })
+
     },
     onReset: function (event) {
       this.url = '',

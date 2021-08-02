@@ -5,10 +5,12 @@
       <div class="text-h7" style="color: white;" @click="goSite">
         Your smol link for: {{originalUrl}}
       </div>
-      <q-input dark rounded class="" outlined
-                v-model="url"
-                label-color="white"
-                color="white"/>
+
+      <q-field dark rounded outlined stack-label>
+        <template v-slot:control>
+          <div class="self-center full-width no-outline">{{newUrl}}</div>
+        </template>
+      </q-field>
 
       <q-btn rounded push label="Copy Link" type="submit" color="red-7" />
       <q-btn rounded push label="Back" type="reset" color="blue-grey-10" text-color="white" />
@@ -23,17 +25,24 @@ import { openURL } from 'quasar'
 
 export default {
   name: 'result',
+  props: {
+    originalUrl: {
+      type: String,
+      required: true
+    },
+    newUrl: {
+      type: String,
+      required: true
+    }
+  },
   data: function () {
     return {
-      custom: false,
-      url: 'youtube.com/thisisyourlink',
-      customUrl: '',
-      originalUrl: 'youtube.com'
+      displayUrl: ''
     }
   },
   methods: {
     onSubmit: function (event) {
-      copyToClipboard(this.url)
+      copyToClipboard(this.newUrl)
       .then(() => {
         console.log("copied")
       })

@@ -16,7 +16,12 @@ const routes = [
     component: () => import('pages/Redirect.vue')
   },
   {
-    path: '/Error',
+    path: '/@/:catchAll(.*)*',
+    beforeEnter() {location.href = 'http://youtube.com'}
+  },
+  {
+    path: '/error',
+    name: 'error',
     component: () => import('pages/Error404.vue')
   }
 ]
