@@ -19,5 +19,11 @@ export default {
     const formData = new FormData()
     formData.append('code', code)
     return backendInstance.post('/getURL', formData)
+  },
+  getEncodedCustom: function (custom, url) {
+    const formData = new FormData()
+    formData.append('custom', custom)
+    formData.append('url', url)
+    return backendInstance.post('/getCustomURL', formData)
   }
 }

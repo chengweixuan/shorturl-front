@@ -44,24 +44,52 @@ export default {
   },
   methods: {
     onSubmit: function (event) {
-      var that = this
-      api.getEncodedUrl(
-        this.url
-      ).then(response => {
-        this.code = response.data
-        this.newUrl = 'localhost:8070/#/' + this.code
-        console.log(this.code)
 
-        this.$router.push({
-          name: 'result',
-          params: {
-            originalUrl: this.url,
-            newUrl: this.newUrl
+      if (this.custom) {
+        var that = this
+        api.getEncodedCustom(
+          this.customUrl,
+          this.url
+        ).then(response => {
+          this.code = response.data
+
+          if (this.code == 'invalid') {
+            console.log('open window for invalid')
+          } else if (this.code == 'exists') {
+            console.log('already exists')
+          } else {
+            this.newUrl = 'localhost:8070/#/' + this.code
+
+            this.$router.push({
+              name: 'result',
+              params: {
+                originalUrl: this.url,
+                newUrl: this.newUrl
+              }
+            })
           }
         })
-      }).catch(error => {
-        console.log(error)
-      })
+
+      } else {
+        var that = this
+        api.getEncodedUrl(
+          this.url
+        ).then(response => {
+          this.code = response.data
+          this.newUrl = 'localhost:8070/#/' + this.code
+          console.log(this.code)
+
+          this.$router.push({
+            name: 'result',
+            params: {
+              originalUrl: this.url,
+              newUrl: this.newUrl
+            }
+          })
+        }).catch(error => {
+          console.log(error)
+        })
+      }
 
     },
     onReset: function (event) {
