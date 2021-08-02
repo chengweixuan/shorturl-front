@@ -25,6 +25,54 @@
       <q-btn rounded push label="Generate" type="submit" color="red-7" />
       <q-btn rounded push label="Reset" type="reset" color="blue-grey-10" text-color="white" />
     </q-form>
+
+    <q-dialog v-model="invalid">
+      <q-card>
+        <q-card-section class="popup-bg">
+          <div class="text-h6">Invalid Custom URl</div>
+        </q-card-section>
+
+        <q-card-section class="popup-bg">
+          Please enter a custom URL with a maximum of 5 characters consisting of numbers, uppercase or lowercase letters.
+        </q-card-section>
+
+        <q-card-actions class="popup-bg" align="right">
+          <q-btn flat label="OK" color="red-6" v-close-popup />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
+
+    <q-dialog v-model="exist">
+      <q-card>
+        <q-card-section class="popup-bg">
+          <div class="text-h6">Existing Custom URL</div>
+        </q-card-section>
+
+        <q-card-section class="popup-bg">
+          This custom URL already exists. Please enter another custom URL with a maximum of 5 characters consisting of numbers, uppercase or lowercase letters.
+        </q-card-section>
+
+        <q-card-actions class="popup-bg" align="right">
+          <q-btn flat label="OK" color="red-6" v-close-popup />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
+
+    <q-dialog v-model="empty">
+      <q-card>
+        <q-card-section class="popup-bg">
+          <div class="text-h6">Invalid URL</div>
+        </q-card-section>
+
+        <q-card-section class="popup-bg">
+          Please enter a valid URL to convert to a smol URL.
+        </q-card-section>
+
+        <q-card-actions class="popup-bg" align="right">
+          <q-btn flat label="OK" color="red-6" v-close-popup />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
   </q-page>
 </template>
 
@@ -39,11 +87,19 @@ export default {
       url: '',
       customUrl: '',
       code: '',
-      newUrl: ''
+      newUrl: '',
+      invalid: false,
+      exist: false,
+      empty: false
     }
   },
   methods: {
     onSubmit: function (event) {
+
+      if (api.isValidUrl(this.url) == false) {
+        this.empty = true
+        return
+      }
 
       if (this.custom) {
         var that = this
@@ -54,9 +110,9 @@ export default {
           this.code = response.data
 
           if (this.code == 'invalid') {
-            console.log('open window for invalid')
+            this.invalid = true
           } else if (this.code == 'exists') {
-            console.log('already exists')
+            this.exist = true
           } else {
             this.newUrl = 'localhost:8070/#/' + this.code
 
@@ -106,13 +162,18 @@ export default {
 background-color: #181925;
 }
 
+.popup-bg {
+  background-color: #28293E;
+  color: #EDF2F4;
+}
+
 .input {
-  width: 450px;
+  width: 300px;
   color: white;
 }
 
 .input-custom {
-  width: 300px;
+  width: 250px;
   color: white;
 }
 
