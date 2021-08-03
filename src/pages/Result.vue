@@ -8,13 +8,13 @@
 
       <q-field dark rounded outlined stack-label>
         <template v-slot:control>
-          <div class="self-center full-width no-outline">{{newUrl}}</div>
+          <div id="newUrl" class="self-center full-width no-outline">{{newUrl}}</div>
         </template>
       </q-field>
 
       <div class="column items-center q-gutter-sm">
-        <q-btn rounded push label="Generate" type="submit" color="red-7" />
-        <q-btn rounded push label="Reset" type="reset" color="blue-grey-10" text-color="white" />
+        <q-btn rounded push label="Copy Text" type="submit" color="red-7" />
+        <q-btn rounded push label="Back" type="reset" color="blue-grey-10" text-color="white" />
       </div>
 
       <br />
@@ -24,9 +24,9 @@
           Made by Cheng Weixuan
         </div>
 
-        <div class="col text-h7" style="color: #EDF2F4;">
+        <a class="col text-h7" style="color: #EDF2F4;" href="https://github.com/chengweixuan">
           GitHub: chengweixuan
-        </div>
+        </a>
       </div>
     </q-form>
   </q-page>
@@ -35,7 +35,7 @@
 <script>
 import { defineComponent } from 'vue';
 import { copyToClipboard } from 'quasar'
-import { openURL } from 'quasar'
+import api from 'src/scripts/Api.js'
 
 export default {
   name: 'result',
@@ -63,6 +63,8 @@ export default {
       .catch(() => {
         console.log("failed to copy")
       })
+
+      api.selectText('newUrl')
     },
     onReset: function (event) {
       this.$router.push({
@@ -71,8 +73,7 @@ export default {
     },
     goSite: function (event) {
       openURL(this.originalUrl)
-    },
-    openURL
+    }
   }
 }
 </script>

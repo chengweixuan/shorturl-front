@@ -34,9 +34,9 @@
           Made by Cheng Weixuan
         </div>
 
-        <div class="col text-h7" style="color: #EDF2F4;">
+        <a class="col text-h7" style="color: #EDF2F4;" href="https://github.com/chengweixuan">
           GitHub: chengweixuan
-        </div>
+        </a>
       </div>
     </q-form>
 
