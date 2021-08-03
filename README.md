@@ -8,6 +8,16 @@ Backend component and more information on the project found at: https://github.c
 
 ## This project is now deployed live at:  https://smol-link.herokuapp.com/  
 
+## Important for local set up
+```bash
+Edit src/scripts/Api.js  
+
+change  
+const BACKEND_URL = 'https://smollink-heroku.herokuapp.com'  
+to  
+const BACKEND_URL = 'http://localhost:8080/'  
+```
+
 ## Install the dependencies
 ```bash
 yarn
