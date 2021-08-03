@@ -8,8 +8,8 @@
   "scripts": {
     "lint": "eslint --ext .js,.vue ./",
     "test": "echo \"No test specified\" && exit 0",
-    "build": "quasar build",
-    "start": "node server.js",
+    "build": "npx quasar build -m ssr",
+    "start": "cd dist/ssr; npm i; npm start",
     "heroku-postbuild": "yarn && yarn build"
   },
   "dependencies": {
@@ -23,13 +23,11 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.13.14",
-    "@babel/core@>=7.11.0",
     "@quasar/app": "^3.0.0",
     "eslint": "^7.14.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-vue": "^7.0.0",
-    "eslint-webpack-plugin": "^2.4.0",
-    "webpack@^4.0.0 || ^5.0.0"
+    "eslint-webpack-plugin": "^2.4.0"
   },
   "browserslist": [
     "last 10 Chrome versions",
