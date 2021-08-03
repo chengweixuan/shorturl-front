@@ -134,7 +134,7 @@ export default {
           } else if (this.code == 'exists') {
             this.exist = true
           } else {
-            this.newUrl = 'localhost:8070/#/' + this.code
+            this.newUrl = 'smol-link.herokuapp.com/#/' + this.code
 
             this.$router.push({
               name: 'result',
@@ -154,7 +154,7 @@ export default {
           this.url
         ).then(response => {
           this.code = response.data
-          this.newUrl = 'localhost:8070/#/' + this.code
+          this.newUrl = 'smol-link.herokuapp.com/#/' + this.code
           console.log(this.code)
 
           this.$router.push({
