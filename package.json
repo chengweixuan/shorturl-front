@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@babel/core": "^7.14.8",
-    "@quasar/extras": "^1.0.0",
+    "@quasar/extras": "^1.10.9",
     "axios": "^0.21.1",
     "connect-history-api-fallback": "^1.6.0",
     "core-js": "^3.6.5",
