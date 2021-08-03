@@ -23,7 +23,11 @@
                 color="white"/>
 
       <div class="column items-center q-gutter-sm">
-        <q-btn rounded push label="Generate" type="submit" color="red-7" />
+        <q-btn rounded push label="Generate" type="submit" color="red-7" :loading="generating">
+          <template v-slot:loading>
+                    <q-spinner-ios />
+          </template>
+        </q-btn>
         <q-btn rounded push label="Reset" type="reset" color="blue-grey-10" text-color="white" />
       </div>
 
@@ -104,11 +108,13 @@ export default {
       newUrl: '',
       invalid: false,
       exist: false,
-      empty: false
+      empty: false,
+      generating: false
     }
   },
   methods: {
     onSubmit: function (event) {
+      this.generating = true
 
       if (api.isValidUrl(this.url) == false) {
         this.empty = true
@@ -136,6 +142,8 @@ export default {
                 originalUrl: this.url,
                 newUrl: this.newUrl
               }
+            }).finally(_ => {
+              this.generating = false
             })
           }
         })
