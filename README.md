@@ -1,8 +1,11 @@
 # Smollink (Frontend)
 
 Frontend component for the URL Shortening service, Smollink.  
+Made with Vue.js using the Quasar framework.
 
 Backend component and more information on the project found at: https://github.com/chengweixuan/Smollink
+
+## This project is now deployed live at:  https://smol-link.herokuapp.com/  
 
 ## Install the dependencies
 ```bash
