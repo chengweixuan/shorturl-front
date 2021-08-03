@@ -8,7 +8,7 @@ Backend component and more information on the project found at: https://github.c
 
 ## This project is now deployed live at:  https://smol-link.herokuapp.com/  
 
-## Important for local set up
+## Important for local set-up
 ```bash
 Edit src/scripts/Api.js  
 
