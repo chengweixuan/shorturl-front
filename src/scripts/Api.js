@@ -6,7 +6,7 @@ const BACKEND_URL = 'https://smollink-heroku.herokuapp.com'
 const backendInstance = axios.create({
   baseURL: BACKEND_URL,
   proxy: false,
-  timeout: 5000
+  timeout: 15000
 });
 
 export default {

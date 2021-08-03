@@ -1,6 +1,8 @@
-# Smollink (front-shorturl)
+# Smollink (Frontend)
 
-URL shortener
+Frontend component for the URL Shortening service, Smollink.  
+
+Backend component and more information on the project found at: https://github.com/chengweixuan/Smollink
 
 ## Install the dependencies
 ```bash
