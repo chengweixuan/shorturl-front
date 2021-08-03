@@ -12,7 +12,7 @@ Backend component and more information on the project found at: https://github.c
 ```bash
 Edit src/scripts/Api.js  
 
-change  
+Change  
 const BACKEND_URL = 'https://smollink-heroku.herokuapp.com'  
 to  
 const BACKEND_URL = 'http://localhost:8080/'  
