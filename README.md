@@ -10,12 +10,20 @@ Backend component and more information on the project found at: https://github.c
 
 ## Important for local set-up
 ```bash
-Edit src/scripts/Api.js  
+Edit src/scripts/Api.js at line 7
 
 Change  
-const BACKEND_URL = 'https://smollink-heroku.herokuapp.com'  
+const BACKEND_URL = cloud  
 to  
-const BACKEND_URL = 'http://localhost:8080/'  
+const BACKEND_URL = local  
+
+
+Edit src/pages/Index.vue at line 120
+
+Change
+var prefix = this.cloudPrefix
+to
+var prefix = this.localPrefix
 ```
 
 ## Install the dependencies
