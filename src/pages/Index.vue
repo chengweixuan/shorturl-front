@@ -80,11 +80,11 @@
     <q-dialog v-model="empty">
       <q-card>
         <q-card-section class="popup-bg">
-          <div class="text-h6">Invalid URL</div>
+          <div class="text-h6">Empty URL</div>
         </q-card-section>
 
         <q-card-section class="popup-bg">
-          Please enter a valid URL to convert to a smol URL.
+          Please enter a URL to convert to a smol URL.
         </q-card-section>
 
         <q-card-actions class="popup-bg" align="right">
@@ -119,7 +119,7 @@ export default {
     onSubmit: function (event) {
       var prefix = this.cloudPrefix
 
-      if (api.isValidUrl(this.url) == false) {
+      if (this.url == '') {
         this.empty = true
         return
       }

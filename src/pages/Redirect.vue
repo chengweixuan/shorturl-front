@@ -37,9 +37,11 @@ export default {
     api.getDecodedUrl(
       this.route
     ).then(response => {
-      this.redirect = '//' + response.data
-      console.log(this.redirect)
-      window.location.href = this.redirect
+      // this.redirect = 'https://' + response.data
+      // console.log(this.redirect)
+      // window.location.href = this.redirect
+      console.log(response.data)
+      window.location = response.data
     }).catch(error => {
       console.log(error)
       this.$router.push({
