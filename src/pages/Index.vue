@@ -19,6 +19,7 @@
       <q-input v-if="custom" dark rounded class="input-custom" standout="bg-red-5"
                 v-model="customUrl"
                 label="Enter Custom URL"
+                hint="Max 5 characters"
                 label-color="white"
                 color="white"/>
 
@@ -51,7 +52,7 @@
         </q-card-section>
 
         <q-card-section class="popup-bg">
-          Please enter a custom URL with a maximum of 5 characters consisting of numbers, uppercase or lowercase letters.
+          Please enter a custom URL with a maximum of 5 characters consisting of numbers, uppercase or/and lowercase letters.
         </q-card-section>
 
         <q-card-actions class="popup-bg" align="right">
@@ -67,7 +68,7 @@
         </q-card-section>
 
         <q-card-section class="popup-bg">
-          This custom URL already exists. Please enter another custom URL with a maximum of 5 characters consisting of numbers, uppercase or lowercase letters.
+          This custom URL already exists. Please enter another custom URL with a maximum of 5 characters consisting of numbers, uppercase and/or lowercase letters.
         </q-card-section>
 
         <q-card-actions class="popup-bg" align="right">
@@ -109,18 +110,21 @@ export default {
       invalid: false,
       exist: false,
       empty: false,
-      generating: false
+      generating: false,
+      localPrefix: 'localhost:8080/',
+      cloudPrefix: 'smol-link.herokuapp.com/#/'
     }
   },
   methods: {
     onSubmit: function (event) {
-      this.generating = true
+      var prefix = this.cloudPrefix
 
       if (api.isValidUrl(this.url) == false) {
         this.empty = true
         return
       }
 
+      this.generating = true
       if (this.custom) {
         var that = this
         api.getEncodedCustom(
@@ -134,7 +138,7 @@ export default {
           } else if (this.code == 'exists') {
             this.exist = true
           } else {
-            this.newUrl = 'smol-link.herokuapp.com/#/' + this.code
+            this.newUrl = prefix + this.code
 
             this.$router.push({
               name: 'result',
@@ -142,10 +146,10 @@ export default {
                 originalUrl: this.url,
                 newUrl: this.newUrl
               }
-            }).finally(_ => {
-              this.generating = false
             })
           }
+        }).finally(_ => {
+          this.generating = false
         })
 
       } else {
@@ -154,7 +158,7 @@ export default {
           this.url
         ).then(response => {
           this.code = response.data
-          this.newUrl = 'smol-link.herokuapp.com/#/' + this.code
+          this.newUrl = prefix + this.code
           console.log(this.code)
 
           this.$router.push({
@@ -166,6 +170,8 @@ export default {
           })
         }).catch(error => {
           console.log(error)
+        }).finally(_ => {
+          this.generating = false
         })
       }
 
