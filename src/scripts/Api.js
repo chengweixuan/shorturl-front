@@ -9,7 +9,7 @@ const BACKEND_URL = cloud
 const backendInstance = axios.create({
   baseURL: BACKEND_URL,
   proxy: false,
-  timeout: 15000
+  timeout: 20000
 });
 
 export default {
