@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 
-const local = 'http://localhost:8080/'
+const localhost = 'http://localhost:8080/'
 const cloud = 'https://smollink-heroku.herokuapp.com'
 // API endpoint(s)
 const BACKEND_URL = cloud

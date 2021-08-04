@@ -15,7 +15,7 @@ Edit src/scripts/Api.js at line 7
 Change  
 const BACKEND_URL = cloud  
 to  
-const BACKEND_URL = local  
+const BACKEND_URL = localhost  
 
 
 Edit src/pages/Index.vue at line 120
