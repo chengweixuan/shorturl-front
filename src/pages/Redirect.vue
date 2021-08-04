@@ -37,11 +37,19 @@ export default {
     api.getDecodedUrl(
       this.route
     ).then(response => {
-      // this.redirect = 'https://' + response.data
-      // console.log(this.redirect)
-      // window.location.href = this.redirect
-      console.log(response.data)
-      window.location = response.data
+
+      if (response.data.substr(0, 8) != 'https://') {
+        this.redirect = 'https://' + response.data
+      } else {
+        this.redirect = response.data
+      }
+
+      console.log(this.redirect)
+
+      window.location = this.redirect
+
+      // console.log(response.data)
+      // window.location = response.data
     }).catch(error => {
       console.log(error)
       this.$router.push({
